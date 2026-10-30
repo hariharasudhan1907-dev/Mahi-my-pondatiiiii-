@@ -1,0 +1,385 @@
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+    z-index: 10;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(circle at center, #24102f, #09050e 75%);
+    color: white;
+    font-family: Georgia, serif;
+}
+
+/* FLOATING PARTICLES */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, #d9a0ff 1px, transparent 2px),
+        radial-gradient(circle, #ffffff 1px, transparent 2px);
+    background-size: 90px 90px, 130px 130px;
+    animation: stars 12s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes stars {
+    from {
+        background-position: 0 0, 0 0;
+    }
+    to {
+        background-position: 90px 180px, -130px 130px;
+    }
+}
+
+/* HEART SCREEN */
+
+.heart-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s ease;
+}
+
+.heart-screen h1 {
+    font-size: 30px;
+    color: #f0d5ff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px #a855d8;
+}
+
+.heart-screen p {
+    color: #d8c5e4;
+    margin-bottom: 40px;
+}
+
+.hearts {
+    display: flex;
+    gap: 45px;
+    margin-bottom: 45px;
+}
+
+.heart {
+    font-size: 75px;
+    animation: heartbeat 1.4s infinite;
+}
+
+.black {
+    filter: drop-shadow(0 0 15px #ffffff);
+}
+
+.purple {
+    filter: drop-shadow(0 0 20px #b54cff);
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+/* BEAUTIFUL HEART MERGE */
+
+.hearts {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.hearts.merge .heart {
+    animation: none;
+}
+
+.hearts.merge .black {
+    transform: translateX(48px) scale(1.15);
+    opacity: 0;
+    transition: all 1.2s ease;
+}
+
+.hearts.merge .purple {
+    transform: translateX(-48px) scale(1.15);
+    opacity: 0;
+    transition: all 1.2s ease;
+}
+
+.hearts.merge::after {
+    content: "💜";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 90px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    filter: drop-shadow(0 0 25px #d580ff);
+    animation: finalHeart 1.5s ease 1.2s forwards;
+}
+
+@keyframes finalHeart {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.35);
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}}
+
+@keyframes heartMerge {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+}	}
+
+/* BUTTON */
+
+button {
+    padding: 15px 28px;
+    border: 1px solid #d9a0ff;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #8e35b5, #4b1268);
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 0 20px #9d42c9;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+}
+
+/* LETTER SCREEN */
+
+.letter-screen {
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    perspective: 1000px;
+}
+
+/* VINTAGE LETTER */
+
+.letter {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    min-height: 400px;
+    padding: 55px 25px 35px;
+
+    background:
+        radial-gradient(ellipse at top left, #fff8e8, transparent 70%),
+        linear-gradient(135deg, #f7e8c8, #e6c99b);
+
+    border: 8px double #987047;
+
+    color: #51351f;
+    text-align: center;
+
+    box-shadow:
+        0 0 25px #a855d8,
+        0 15px 40px rgba(0,0,0,0.6);
+
+    transform: rotateX(-15deg) scale(0.7);
+    opacity: 0;
+    transition: all 1.3s ease;
+}
+
+.letter.show {
+    transform: rotateX(0deg) scale(1);
+    opacity: 1;
+}
+
+.letter h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #603b26;
+    text-shadow: 1px 1px 2px #c9a77a;
+}
+
+.divider {
+    color: #9c6b37;
+    font-size: 24px;
+    margin: 15px 0 25px;
+}
+
+.letter p {
+    font-size: 17px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.signature {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #b99a6b;
+    text-align: right;
+    font-style: italic;
+    color: #70452c;
+}
+
+/* PURPLE WAX SEAL */
+
+.wax-seal {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: radial-gradient(circle, #a040c0, #4b006e);
+    border: 3px solid #d9a0ff;
+
+    box-shadow: 0 0 25px #a855d8;
+}
+/* FIX HEART MERGE */
+
+.hearts.merge .heart {
+    animation: none;
+}
+
+.hearts.merge .black {
+    transform: translateX(55px) scale(1.2);
+    transition: transform 1.3s ease;
+}
+
+.hearts.merge .purple {
+    transform: translateX(-55px) scale(1.2);
+    transition: transform 1.3s ease;
+}
+/* SLOW AND SMOOTH HEART MERGE */
+
+.hearts {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.hearts.merge .heart {
+    animation: none !important;
+    transition:
+        transform 2.5s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 2.5s ease !important;
+}
+
+.hearts.merge .black {
+    transform: translateX(48px) scale(1.12);
+    filter: drop-shadow(0 0 20px white);
+}
+
+.hearts.merge .purple {
+    transform: translateX(-48px) scale(1.12);
+    filter: drop-shadow(0 0 25px #d580ff);
+}
+
+/* REMOVE EXTRA HEART EFFECT */
+
+.hearts.merge::after {
+    content: none !important;
+}
+
+/* BEAUTIFUL BUTTON */
+
+#mergeBtn {
+    margin-top: 10px;
+    padding: 17px 32px;
+    border: 1px solid #e2b7ff;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #a044c7,
+        #642080,
+        #351044
+    );
+
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 0 15px #a044c7,
+        0 0 35px rgba(180, 80, 255, 0.4);
+
+    transition: all 0.3s ease;
+}
+
+#mergeBtn:active {
+    transform: scale(0.94);
+    box-shadow: 0 0 30px #d580ff;
+}
+
+#mergeBtn:disabled {
+    opacity: 0.6;
+}
+/* OLD HEART MERGE STYLE */
+
+.hearts.merge .heart {
+    animation: none;
+    transition: transform 1.3s ease;
+}
+
+.hearts.merge .black {
+    transform: translateX(55px) scale(1.2);
+}
+
+.hearts.merge .purple {
+    transform: translateX(-55px) scale(1.2);
+}
+
+.hearts.merge::after {
+    display: none;
+}
